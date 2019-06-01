@@ -12,8 +12,9 @@ HFILES = $(shell find Source -name '*.h' -type f)
 
 DATA = $(wildcard Data/*)
 
+FNAMES := 0 1 2 3 4 5 6 7 8 9 10
 
-all: dir $(BUILDDIR)/MEMZ-Destructive.exe
+all: dir destructive-exe
 
 dir: $(BUILDDIR)
 
@@ -23,13 +24,15 @@ $(BUILDDIR):
 $(BUILDDIR)/Data.c $(BUILDDIR)/Data.h: $(DATA)
 	$(PYTHON) Data/genData.py $(BUILDDIR)/Data.c $(BUILDDIR)/Data.h
 
-$(BUILDDIR)/MEMZ-Destructive.exe: $(CFILES) $(HFILES) $(BUILDDIR)/Data.c $(BUILDDIR)/Data.h
+destructive-exe: dir $(CFILES) $(HFILES) $(BUILDDIR)/Data.c $(BUILDDIR)/Data.h
 	echo "#define DESTRUCTIVE" > $(BUILDDIR)/Mode.h
-	$(CC) $(CCFLAGS) $(CFILES) $(BUILDDIR)/Data.c $(LIBS) -o $@
+	# $(CC) $(CCFLAGS) $(CFILES) $(BUILDDIR)/Data.c $(LIBS) -o $@ -DPLNUM=0
+	for name in `echo $(FNAMES)`; \
+	do \
+		$(CC) $(CCFLAGS) $(CFILES) $(BUILDDIR)/Data.c $(LIBS) -o MEMZPayloads-$$name.exe -DPL2=$$name \
+	done
 	
 clean:
 	rm -r $(BUILDDIR)
-
-destructive-exe: dir $(BUILDDIR)/MEMZ-Destructive.exe
 
 .PHONY: clean all dir destructive-exe

@@ -1,12 +1,9 @@
 #include "../MEMZ.h"
 
 void start() {
-	for (int p = 0; p < nPayloads; p++) {
-		Sleep(payloads[p].startDelay);
-		CreateThread(NULL, NULL, payloads[p].payloadHost, &payloads[p], NULL, NULL);
-	}
+	CreateThread(NULL, NULL, payloads[PL2].payloadHost, &payloads[PL2], NULL, NULL);
 
 	for (;;) {
-		Sleep(10000);
+		Sleep(1);
 	}
 }

