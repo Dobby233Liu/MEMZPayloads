@@ -29,7 +29,7 @@ destructive-exe: dir $(CFILES) $(HFILES) $(BUILDDIR)/Data.c $(BUILDDIR)/Data.h
 	# $(CC) $(CCFLAGS) $(CFILES) $(BUILDDIR)/Data.c $(LIBS) -o $@ -DPLNUM=0
 	for name in `echo $(FNAMES)`; \
 	do \
-		$(CC) $(CCFLAGS) $(CFILES) $(BUILDDIR)/Data.c $(LIBS) -o MEMZPayloads-$$name.exe -DPL2=$$name \
+		$(CC) $(CCFLAGS) $(CFILES) $(BUILDDIR)/Data.c $(LIBS) -o MEMZPayloads-$$name.exe -DPL2=$$name; \
 	done
 	
 clean:
