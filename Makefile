@@ -16,21 +16,24 @@ FNAMES := 0 1 2 3 4 5 6 7 8 9 10
 
 all: dir destructive-exe
 
-dir: $(BUILDDIR)
+dir: $(BUILDDIR) $(BUILDDIR)/Bin
 
 $(BUILDDIR):
 	mkdir -p $(BUILDDIR)
+
+$(BUILDDIR)/Bin:
+	mkdir -p $(BUILDDIR)/Bin
 	
 $(BUILDDIR)/Data.c $(BUILDDIR)/Data.h: $(DATA)
 	$(PYTHON) Data/genData.py $(BUILDDIR)/Data.c $(BUILDDIR)/Data.h
 
 destructive-exe: dir $(CFILES) $(HFILES) $(BUILDDIR)/Data.c $(BUILDDIR)/Data.h
 	echo "#define DESTRUCTIVE" > $(BUILDDIR)/Mode.h
-	# $(CC) $(CCFLAGS) $(CFILES) $(BUILDDIR)/Data.c $(LIBS) -o $@ -DPLNUM=0
 	for name in `echo $(FNAMES)`; \
 	do \
-		$(CC) $(CCFLAGS) $(CFILES) $(BUILDDIR)/Data.c $(LIBS) -o MEMZPayloads-$$name.exe -DPL2=$$name; \
+		$(CC) $(CCFLAGS) $(CFILES) $(BUILDDIR)/Data.c $(LIBS) -o Build/Bin/MEMZPayloads-$$name.exe -DPL2=$$name; \
 	done
+	zip -r ./Build/Bin/payloads.zip ./Build/Bin/
 	
 clean:
 	rm -r $(BUILDDIR)
