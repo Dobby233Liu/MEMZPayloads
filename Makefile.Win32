@@ -19,10 +19,10 @@ all: dir destructive-exe
 dir: $(BUILDDIR) $(BUILDDIR)/Bin
 
 $(BUILDDIR):
-	mkdir -p $(BUILDDIR)
+	mkdir $(BUILDDIR)
 
 $(BUILDDIR)/Bin:
-	mkdir -p $(BUILDDIR)/Bin
+	mkdir $(BUILDDIR)/Bin
 	
 $(BUILDDIR)/Data.c $(BUILDDIR)/Data.h: $(DATA)
 	$(PYTHON) Data/genData.py $(BUILDDIR)/Data.c $(BUILDDIR)/Data.h
