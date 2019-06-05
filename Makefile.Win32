@@ -22,7 +22,7 @@ $(BUILDDIR):
 	mkdir $(BUILDDIR)
 
 $(BUILDDIR)/Bin:
-	mkdir $(BUILDDIR)/Bin
+	mkdir $(BUILDDIR)\Bin
 	
 $(BUILDDIR)/Data.c $(BUILDDIR)/Data.h: $(DATA)
 	$(PYTHON) Data/genData.py $(BUILDDIR)/Data.c $(BUILDDIR)/Data.h
