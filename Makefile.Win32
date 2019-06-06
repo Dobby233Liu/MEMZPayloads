@@ -1,4 +1,4 @@
-CC = gcc
+CC = i686-w64-mingw32-gcc
 PYTHON = python2
 
 CCFLAGS = -nostdlib -nodefaultlibs -std=c99 -Wl,-e_start -s -mwindows -m32 -municode -Os -w -march=i486
