@@ -15,9 +15,6 @@ PAYLOADHOST(payloadCrazyBus) {
 	waveOutPrepareHeader(hwo, &hdr, sizeof(hdr));
 
 	for (;;) {
-#ifdef CLEAN
-		if (enablePayloads && SendMessage(payload->btn, BM_GETCHECK, 0, NULL) == BST_CHECKED) {
-#endif
 			int freq = 0;
 			for (int i = 0; i < bufsize; i++) {
 				if (i % (44100 / 4) == 0)
@@ -26,26 +23,12 @@ PAYLOADHOST(payloadCrazyBus) {
 				wavedata[i] = (char)(((i % freq) / ((float)freq)) * 100);
 			}
 
-#ifdef CLEAN
 			waveOutReset(hwo);
-#endif
+
 			waveOutWrite(hwo, &hdr, sizeof(hdr));
 
-			while (!(hdr.dwFlags & WHDR_DONE)
-#ifdef CLEAN
-				&&  (enablePayloads && SendMessage(payload->btn, BM_GETCHECK, 0, NULL) == BST_CHECKED)
-#endif
-				) {
+			while (!(hdr.dwFlags & WHDR_DONE) {
 				Sleep(1);
-			}
-
-#ifdef CLEAN
-			if (!enablePayloads || SendMessage(payload->btn, BM_GETCHECK, 0, NULL) != BST_CHECKED) {
-				waveOutPause(hwo);
-			}
-		} else {
-			Sleep(10);
-		}
-#endif
+                        }
 	}
 }
