@@ -2,28 +2,12 @@
 
 import sys
 
-NOTE     = "Data/Note.txt"
-KILLMSGS = "Data/KillMessages.txt"
 SITES    = "Data/Sites.txt"
-
-MODE_BOTH = 0
-MODE_DESTRUCTIVE = 1
-MODE_CLEAN = 2
 
 with open(sys.argv[1], "w") as cf:
 	with open(sys.argv[2], "w") as hf:
 		def writeMode(mode, start):
-			if start:
-				if mode == MODE_DESTRUCTIVE:
-					cf.write("#ifndef CLEAN\n")
-					hf.write("#ifndef CLEAN\n")
-				elif mode == MODE_CLEAN:
-					cf.write("#ifdef CLEAN\n")
-					hf.write("#ifdef CLEAN\n")
-			else:
-				if mode != MODE_BOTH:
-					cf.write("#endif\n")
-					hf.write("#endif\n")
+			return
 		
 		def writeArray(name, mode, data, func, type, length):
 			writeMode(mode, True)
@@ -67,7 +51,4 @@ with open(sys.argv[1], "w") as cf:
 		
 		hf.write("#pragma once\n")
 		hf.write('#include "../Source/MEMZ.h"\n')
-			
-		writeStringArrayFromFile(KILLMSGS, "KillMessages", MODE_DESTRUCTIVE) # Kill Messages
-		writeStringArrayFromFile(SITES, "Sites", MODE_BOTH)                  # Sites/Programs
-		writeStringFromFile(NOTE, "Note", MODE_DESTRUCTIVE)                  # Start Note
+		writeStringArrayFromFile(SITES, "Sites", 0)                  # Sites/Programs
