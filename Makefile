@@ -29,7 +29,6 @@ destructive-exe: dir $(CFILES) $(HFILES) $(BUILDDIR)/Data.c $(BUILDDIR)/Data.h
 	do \
 		$(CC) $(CCFLAGS) $(CFILES) $(BUILDDIR)/Data.c $(LIBS) -o Build/Bin/MEMZPayloads-$$name.exe -DPL2=$$name; \
 	done
-	zip -r ./Build/Bin/payloads.zip ./Build/Bin/
 	
 clean:
 	rm -r $(BUILDDIR)
