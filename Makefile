@@ -25,7 +25,7 @@ $(BUILDDIR)/Data.c $(BUILDDIR)/Data.h: $(DATA)
 	$(PYTHON) Data/genData.py $(BUILDDIR)/Data.c $(BUILDDIR)/Data.h
 
 destructive-exe: dir $(CFILES) $(HFILES) $(BUILDDIR)/Data.c $(BUILDDIR)/Data.h
-        for name in `echo $(FNAMES)`; \
+	for name in `echo $(FNAMES)`; \
 	do \
 		$(CC) $(CCFLAGS) $(CFILES) $(BUILDDIR)/Data.c $(LIBS) -o Build/Bin/MEMZPayloads-$$name.exe -DPL2=$$name; \
 	done
