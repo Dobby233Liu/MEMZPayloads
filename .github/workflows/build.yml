@@ -10,3 +10,6 @@ jobs:
     - uses: actions/checkout@v2
     - run: sudo apt install -y gcc-mingw-w64-i686 python2
     - run: make
+    - uses: actions/upload-artifact@v2
+      with:
+        path: Build/Bin
