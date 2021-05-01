@@ -4,9 +4,9 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
-    - uses: Dobby233Liu/download-mingw@1.1.0
+    - run: apt install -y gcc-mingw-w64-i686 python2
     - run: make
