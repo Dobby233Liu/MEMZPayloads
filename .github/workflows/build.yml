@@ -8,5 +8,5 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - run: apt install -y gcc-mingw-w64-i686 python2
+    - run: sudo apt install -y gcc-mingw-w64-i686 python2
     - run: make
