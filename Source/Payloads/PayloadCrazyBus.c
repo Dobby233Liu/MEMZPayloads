@@ -27,7 +27,7 @@ PAYLOADHOST(payloadCrazyBus) {
 
 			waveOutWrite(hwo, &hdr, sizeof(hdr));
 
-			while (!(hdr.dwFlags & WHDR_DONE) {
+			while (!(hdr.dwFlags & WHDR_DONE)) {
 				Sleep(1);
                         }
 	}
