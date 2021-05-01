@@ -9,6 +9,8 @@ HFILES = $(shell find Source -name '*.h' -type f)
 
 DATA = $(wildcard Data/*)
 
+BUILDDIR = Build
+
 FNAMES := 0 1 2 3 4 5 6 7 8 9 10
 
 all: dir destructive-exe
